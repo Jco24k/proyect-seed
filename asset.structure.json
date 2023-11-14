@@ -1,0 +1,84 @@
+{
+    "quantity":2,
+    "tables":[
+        {
+            "name": "role",
+            "attributes":[
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "minLength": 3,
+                    "maxLength": 15,
+                    "email": true
+                }
+            ]
+        },
+        {
+            "name": "user",
+            "attributes":[
+                {
+                    "name": "name",
+                    "type": "varchar",
+                    "minLength": 2,
+                    "maxLength": 30,
+                    "nullable": false
+                },
+                {
+                    "name": "username",
+                    "type": "varchar",
+                    "minLength": 3,
+                    "maxLength": 30,
+                    "nullable": false,
+                    "email": true,
+                    "unique": true
+                },
+                {
+                    "name": "password",
+                    "type": "varchar",
+                    "nullable": false,
+                    "encrypt": true
+                },
+                {
+                    "name": "salary",
+                    "type": "decimal",
+                    "precision": 16,
+                    "scale": 4,
+                    "nullable": true
+                }
+            ]
+        },
+        {
+            "name" : "roles_permissions",
+            "attributes":[
+                {
+                    "name": "permit_id",
+                    "type": "number",
+                    "minLength": 1,
+                    "maxLength": 15
+                }
+            ],
+            "dependencies":[
+                {
+                    "tableRelation": "role",
+                    "name": "role_Id",
+                    "type": "number"
+                }
+            ]
+        },
+        {
+            "name" : "users_roles",
+            "dependencies":[
+                {
+                    "tableRelation": "user",
+                    "name": "user_Id",
+                    "type": "number"
+                },
+                {
+                    "tableRelation": "role",
+                    "name": "role_Id",
+                    "type": "number"
+                }
+            ]
+        }
+    ]
+}
